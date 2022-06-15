@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+    Hier werden wir noch politische Einstellungen abfragen.
+</div>
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+    <fieldset>
+        <div class="table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>
+                            <p class="mb-0">Sehr wahrscheinlich </p>
+                        </th>
+                        <th>
+                            <p class="mb-0"></p>
+                        </th>
+                        <th>
+                            <p class="mb-0"></p>
+                        </th>
+                        <th>
+                            <p class="mb-0"></p>
+                        </th>
+                        <th>
+                            <p class="mb-0">Sehr unwahrscheinlich</p>
+                        </th>
+                        <th>
+                            <p class="mb-0">Weiß nicht/ Keine Angabe</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="font-weight:normal"> <span> Mit welcher Wahrscheinlichkeit würden Sie an dieser
+                                Demonstration teilnehmen?</span>
+
+                        </th>
+                        <th><input type="radio" name="participation" value="1"></th>
+                        <th><input type="radio" name="participation" value="2"></th>
+                        <th><input type="radio" name="participation" value="3"></th>
+                        <th><input type="radio" name="participation" value="4"></th>
+                        <th><input type="radio" name="participation" value="5"></th>
+                        <th><input type="radio" name="participation" value="-888"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">
+    Weiter
+</button>
+
+{% endblock %}

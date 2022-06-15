@@ -1,0 +1,190 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+    Hier wird abgefragt ob man teilnimmt und was die Teilnahme beeinflusst.
+</div>
+<!-- First table regarding if they would participate in the demonstration -->
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+    <fieldset>
+        <div class="table">
+            <table class="table w-auto"> Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?
+                <tr>
+                    <th style="width: 16.67%">
+                        <p class="mb-0"></p>Sehr <br>wahrscheinlich </p>
+                    </th>
+                    <th style="width: 16.67%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 16.67%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 16.67%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 16.67%">
+                        <p class="mb-0">Sehr <br> unwahrscheinlich</p>
+                    </th>
+                    <th style="width: 16.67%">
+                        <p class="mb-0">Weiß nicht/ <br> Keine Angabe</p>
+                    </th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <tr>
+                        <th><input type="radio" name="participation" value="1"></th>
+                        <th><input type="radio" name="participation" value="2"></th>
+                        <th><input type="radio" name="participation" value="3"></th>
+                        <th><input type="radio" name="participation" value="4"></th>
+                        <th><input type="radio" name="participation" value="5"></th>
+                        <th><input type="radio" name="participation" value="-888"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<!-- second table asking what influences their willingness to participate -->
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+    <fieldset>
+        <div class="table">
+            <table class="table w-auto"> Was beeinflusst die Wahrscheinlichkeit Ihrer Teilnahme?
+                <tr>
+                    <td></td>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p> <br><br>trifft zu </p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"><br><br>trifft nicht zu</p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0">Weiß nicht/ <br> Keine Angabe</p>
+                    </th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <!-- topic_relevance -->
+                    <tr>
+                        <th>Die Relevanz der Thematik</th>
+                        <th><input type="radio" name="topic_relevance" value="1"></th>
+                        <th><input type="radio" name="topic_relevance" value="2"></th>
+                        <th><input type="radio" name="topic_relevance" value="3"></th>
+                        <th><input type="radio" name="topic_relevance" value="4"></th>
+                        <th><input type="radio" name="topic_relevance" value="5"></th>
+                        <th><input type="radio" name="topic_relevance" value="-888"></th>
+                    </tr>
+                    <!-- familiar_people -->
+                    <tr>
+                        <th>Ob Personen hingehen, die ich kenne</th>
+                        <th><input type="radio" name="familiar_people" value="1"></th>
+                        <th><input type="radio" name="familiar_people" value="2"></th>
+                        <th><input type="radio" name="familiar_people" value="3"></th>
+                        <th><input type="radio" name="familiar_people" value="4"></th>
+                        <th><input type="radio" name="familiar_people" value="5"></th>
+                        <th><input type="radio" name="familiar_people" value="-888"></th>
+                    </tr>
+                    <!-- booked -->
+                    <tr>
+                        <th>Ob ich an dem Tag bereits andere Verpflichtungen habe</th>
+                        <th><input type="radio" name="booked" value="1"></th>
+                        <th><input type="radio" name="booked" value="2"></th>
+                        <th><input type="radio" name="booked" value="3"></th>
+                        <th><input type="radio" name="booked" value="4"></th>
+                        <th><input type="radio" name="booked" value="5"></th>
+                        <th><input type="radio" name="booked" value="-888"></th>
+                    </tr>
+                    <!-- transportation -->
+                    <tr>
+                        <th>Die Bereitstellung von Transportmitteln zum Veranstaltungsort</th>
+                        <th><input type="radio" name="transportation" value="1"></th>
+                        <th><input type="radio" name="transportation" value="2"></th>
+                        <th><input type="radio" name="transportation" value="3"></th>
+                        <th><input type="radio" name="transportation" value="4"></th>
+                        <th><input type="radio" name="transportation" value="5"></th>
+                        <th><input type="radio" name="transportation" value="-888"></th>
+                    </tr>
+                    <!-- reach -->
+                    <tr>
+                        <th>Die Reichweite der Demonstration/Anzahl an Demonstranten</th>
+                        <th><input type="radio" name="reach" value="1"></th>
+                        <th><input type="radio" name="reach" value="2"></th>
+                        <th><input type="radio" name="reach" value="3"></th>
+                        <th><input type="radio" name="reach" value="4"></th>
+                        <th><input type="radio" name="reach" value="5"></th>
+                        <th><input type="radio" name="reach" value="-888"></th>
+                    </tr>
+                    <!-- crowd -->
+                    <tr>
+                        <th>Bedenken bei größeren Menschenmengen</th>
+                        <th><input type="radio" name="crowd" value="1"></th>
+                        <th><input type="radio" name="crowd" value="2"></th>
+                        <th><input type="radio" name="crowd" value="3"></th>
+                        <th><input type="radio" name="crowd" value="4"></th>
+                        <th><input type="radio" name="crowd" value="5"></th>
+                        <th><input type="radio" name="crowd" value="-888"></th>
+                    </tr>
+                    <!-- polarization -->
+                    <tr>
+                        <th>Angst vor polarisierender Wirkung</th>
+                        <th><input type="radio" name="polarization" value="1"></th>
+                        <th><input type="radio" name="polarization" value="2"></th>
+                        <th><input type="radio" name="polarization" value="3"></th>
+                        <th><input type="radio" name="polarization" value="4"></th>
+                        <th><input type="radio" name="polarization" value="5"></th>
+                        <th><input type="radio" name="polarization" value="-888"></th>
+                    </tr>
+                    <!--riots -->
+                    <tr>
+                        <th>Angst vor Ausschreitungen</th>
+                        <th><input type="radio" name="riots" value="1"></th>
+                        <th><input type="radio" name="riots" value="2"></th>
+                        <th><input type="radio" name="riots" value="3"></th>
+                        <th><input type="radio" name="riots" value="4"></th>
+                        <th><input type="radio" name="riots" value="5"></th>
+                        <th><input type="radio" name="riots" value="-888"></th>
+                    </tr>
+                    <!--participation_else -->
+                    <tr>
+                        <th>Sonstiges, bitte angeben <br>
+                            <input type="text" name="participation_else">
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">
+    Weiter
+</button>
+
+{% endblock %}
