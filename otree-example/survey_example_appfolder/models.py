@@ -9,6 +9,8 @@ from otree.api import (
     currency_range,
 )
 
+
+# todo: randomization of the groups
 author = '''Team Social Movement, 
 Friederike Bauer, Leslie Fischer, Lina Jeannot, Freya Moßig, Pascal Mounchid, Anna Schleiter Nielsen'''
 doc = '''Social Movements:
@@ -38,5 +40,11 @@ class Player(BasePlayer):
     polarization = models.IntegerField(initial=-999)
     riots = models.IntegerField(initial=-999)
     participation_else = models.StringField(blank=True)
-
+    #PoliticalPage
+    political_participation = models.IntegerField(initial=-999)
+    political_influence = models.IntegerField(initial=-999)
+    political_chance = models.IntegerField(initial=-999)
+    future = models.IntegerField(initial=-999)
+    unsure = models.IntegerField(initial=-999)
+    olddays = models.IntegerField(initial=-999)
                         

@@ -10,45 +10,103 @@
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
     Hier werden wir noch politische Einstellungen abfragen.
 </div>
+<!-- table asking about political preferences -->
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
     <fieldset>
         <div class="table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td></td>
-                        <th>
-                            <p class="mb-0">Sehr wahrscheinlich </p>
-                        </th>
-                        <th>
-                            <p class="mb-0"></p>
-                        </th>
-                        <th>
-                            <p class="mb-0"></p>
-                        </th>
-                        <th>
-                            <p class="mb-0"></p>
-                        </th>
-                        <th>
-                            <p class="mb-0">Sehr unwahrscheinlich</p>
-                        </th>
-                        <th>
-                            <p class="mb-0">Weiß nicht/ Keine Angabe</p>
-                        </th>
-                    </tr>
-                </thead>
+            <table class="table w-auto"> Inwieweit stimmen Sie den Folgenden Aussagen zu oder nicht zu?
+                <tr>
+                    <td></td>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p> <br><br>trifft zu </p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"></p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0"><br><br>trifft nicht zu</p>
+                    </th>
+                    <th style="width: 13%">
+                        <p class="mb-0">Weiß nicht/ <br> Keine Angabe</p>
+                    </th>
+                </tr>
                 <tbody>
                     <tr>
-                        <th style="font-weight:normal"> <span> Mit welcher Wahrscheinlichkeit würden Sie an dieser
-                                Demonstration teilnehmen?</span>
-
+                        <th></th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <!-- political_participation -->
+                    <tr>
+                        <th>Wir sollten uns mehr politisch beteiligen, dann können wir die Arbeit der Regierung besser
+                            kontrollieren.
                         </th>
-                        <th><input type="radio" name="participation" value="1"></th>
-                        <th><input type="radio" name="participation" value="2"></th>
-                        <th><input type="radio" name="participation" value="3"></th>
-                        <th><input type="radio" name="participation" value="4"></th>
-                        <th><input type="radio" name="participation" value="5"></th>
-                        <th><input type="radio" name="participation" value="-888"></th>
+                        <th><input type="radio" name="political_participation" value="1"></th>
+                        <th><input type="radio" name="political_participation" value="2"></th>
+                        <th><input type="radio" name="political_participation" value="3"></th>
+                        <th><input type="radio" name="political_participation" value="4"></th>
+                        <th><input type="radio" name="political_participation" value="5"></th>
+                        <th><input type="radio" name="political_participation" value="-888"></th>
+                    </tr>
+                    <!-- political_influence -->
+                    <tr>
+                        <th>Wir müssen uns stärker politisch betätigen, damit wir die politischen Entscheidungen
+                            beeinflussen können.</th>
+                        <th><input type="radio" name="political_influence" value="1"></th>
+                        <th><input type="radio" name="political_influence" value="2"></th>
+                        <th><input type="radio" name="political_influence" value="3"></th>
+                        <th><input type="radio" name="political_influence" value="4"></th>
+                        <th><input type="radio" name="political_influence" value="5"></th>
+                        <th><input type="radio" name="political_influence" value="-888"></th>
+                    </tr>
+                    <!-- political_chance -->
+                    <tr>
+                        <th>Wir sollten die Chance nützen, uns politisch zu betätigen.</th>
+                        <th><input type="radio" name="political_chance" value="1"></th>
+                        <th><input type="radio" name="political_chance" value="2"></th>
+                        <th><input type="radio" name="political_chance" value="3"></th>
+                        <th><input type="radio" name="political_chance" value="4"></th>
+                        <th><input type="radio" name="political_chance" value="5"></th>
+                        <th><input type="radio" name="political_chance" value="-888"></th>
+                    </tr>
+                    <!-- future -->
+                    <tr>
+                        <th>Wenn man an die Zukunft denkt, kann man eigentlich sehr zuversichtlich sein.</th>
+                        <th><input type="radio" name="future" value="1"></th>
+                        <th><input type="radio" name="future" value="2"></th>
+                        <th><input type="radio" name="future" value="3"></th>
+                        <th><input type="radio" name="future" value="4"></th>
+                        <th><input type="radio" name="future" value="5"></th>
+                        <th><input type="radio" name="future" value="-888"></th>
+                    </tr>
+                    <!-- unsure -->
+                    <tr>
+                        <th>Wenn man die Ereignisse der letzten Jahre betrachtet, wird man richtig unsicher.</th>
+                        <th><input type="radio" name="unsure" value="1"></th>
+                        <th><input type="radio" name="unsure" value="2"></th>
+                        <th><input type="radio" name="unsure" value="3"></th>
+                        <th><input type="radio" name="unsure" value="4"></th>
+                        <th><input type="radio" name="unsure" value="5"></th>
+                        <th><input type="radio" name="unsure" value="-888"></th>
+                    </tr>
+                    <!-- olddays -->
+                    <tr>
+                        <th>Früher waren die Leute besser dran, weil jeder wusste, was er zu tun hatte.</th>
+                        <th><input type="radio" name="olddays" value="1"></th>
+                        <th><input type="radio" name="olddays" value="2"></th>
+                        <th><input type="radio" name="olddays" value="3"></th>
+                        <th><input type="radio" name="olddays" value="4"></th>
+                        <th><input type="radio" name="olddays" value="5"></th>
+                        <th><input type="radio" name="olddays" value="-888"></th>
                     </tr>
                 </tbody>
             </table>

@@ -19,6 +19,8 @@ class ParticipationPage(Page):
 
 class PoliticalPage(Page):
     form_model = Player
+    form_fields=['political_participation', 'political_influence', 'political_chance',
+    'future', 'unsure', 'olddays']
 
 class EndPage(Page):
 
