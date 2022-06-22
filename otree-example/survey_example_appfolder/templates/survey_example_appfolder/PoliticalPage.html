@@ -5,6 +5,19 @@
 {% block title %}
 {% endblock %}
 
+
+{% block styles %}
+<style>
+table { border-collapse: collapse; }
+.line {
+  border-right:  solid 1px rgb(214,214,214);
+}
+
+
+</style>
+
+{% endblock %}
+
 {% block content %}
 <br>
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
@@ -16,9 +29,9 @@
         <div class="table">
             <table class="table w-auto"> Inwieweit stimmen Sie den Folgenden Aussagen zu oder nicht zu?
                 <tr>
-                    <td></td>
+                    <td style="width: 20%"></td>
                     <th style="width: 13%">
-                        <p class="mb-0"></p> <br><br>trifft zu </p>
+                        <p class="mb-0"></p><br><br>trifft nicht zu</p>
                     </th>
                     <th style="width: 13%">
                         <p class="mb-0"></p>
@@ -30,7 +43,7 @@
                         <p class="mb-0"></p>
                     </th>
                     <th style="width: 13%">
-                        <p class="mb-0"><br><br>trifft nicht zu</p>
+                        <p class="mb-0"><br><br>trifft zu </p>
                     </th>
                     <th style="width: 13%">
                         <p class="mb-0">Weiß nicht/ <br> Keine Angabe</p>
@@ -43,7 +56,8 @@
                         <th>2</th>
                         <th>3</th>
                         <th>4</th>
-                        <th>5</th>
+                        <th class='line'>5</th>
+                        <th ></th>
                     </tr>
                     <!-- political_participation -->
                     <tr>
@@ -54,8 +68,8 @@
                         <th><input type="radio" name="political_participation" value="2"></th>
                         <th><input type="radio" name="political_participation" value="3"></th>
                         <th><input type="radio" name="political_participation" value="4"></th>
-                        <th><input type="radio" name="political_participation" value="5"></th>
-                        <th><input type="radio" name="political_participation" value="-888"></th>
+                        <th class='line'><input type="radio" name="political_participation" value="5"></th>
+                        <th><input type="radio" name="political_participation" value="-888" style= 'text-align:right'></th>
                     </tr>
                     <!-- political_influence -->
                     <tr>
@@ -66,17 +80,17 @@
                         <th><input type="radio" name="political_influence" value="3"></th>
                         <th><input type="radio" name="political_influence" value="4"></th>
                         <th><input type="radio" name="political_influence" value="5"></th>
-                        <th><input type="radio" name="political_influence" value="-888"></th>
+                        <th class='line'><input type="radio" name="political_influence" value="-888"></th>
                     </tr>
                     <!-- political_chance -->
                     <tr>
-                        <th>Wir sollten die Chance nützen, uns politisch zu betätigen.</th>
+                        <th>Wir sollten die Chance nutzen, uns politisch zu betätigen.</th>
                         <th><input type="radio" name="political_chance" value="1"></th>
                         <th><input type="radio" name="political_chance" value="2"></th>
                         <th><input type="radio" name="political_chance" value="3"></th>
                         <th><input type="radio" name="political_chance" value="4"></th>
                         <th><input type="radio" name="political_chance" value="5"></th>
-                        <th><input type="radio" name="political_chance" value="-888"></th>
+                        <th class='line'><input type="radio" name="political_chance" value="-888"></th>
                     </tr>
                     <!-- future -->
                     <tr>
@@ -86,7 +100,7 @@
                         <th><input type="radio" name="future" value="3"></th>
                         <th><input type="radio" name="future" value="4"></th>
                         <th><input type="radio" name="future" value="5"></th>
-                        <th><input type="radio" name="future" value="-888"></th>
+                        <th class='line'><input type="radio" name="future" value="-888"></th>
                     </tr>
                     <!-- unsure -->
                     <tr>
@@ -96,7 +110,7 @@
                         <th><input type="radio" name="unsure" value="3"></th>
                         <th><input type="radio" name="unsure" value="4"></th>
                         <th><input type="radio" name="unsure" value="5"></th>
-                        <th><input type="radio" name="unsure" value="-888"></th>
+                        <th class='line'><input type="radio" name="unsure" value="-888"></th>
                     </tr>
                     <!-- olddays -->
                     <tr>
@@ -106,7 +120,7 @@
                         <th><input type="radio" name="olddays" value="3"></th>
                         <th><input type="radio" name="olddays" value="4"></th>
                         <th><input type="radio" name="olddays" value="5"></th>
-                        <th><input type="radio" name="olddays" value="-888"></th>
+                        <th class='line'><input type="radio" name="olddays" value="-888"></th>
                     </tr>
                 </tbody>
             </table>

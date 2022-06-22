@@ -29,6 +29,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # todo: noch anfang der Seite hinzu
     #ParticipationPage
     participation = models.IntegerField(initial=-999)
     topic_relevance = models.IntegerField(initial = -999)
@@ -39,7 +40,7 @@ class Player(BasePlayer):
     crowd = models.IntegerField(initial=-999)
     polarization = models.IntegerField(initial=-999)
     riots = models.IntegerField(initial=-999)
-    participation_else = models.StringField(blank=True)
+    participation_else = models.StringField(blank=True) #voluntary
     #PoliticalPage
     political_participation = models.IntegerField(initial=-999)
     political_influence = models.IntegerField(initial=-999)
