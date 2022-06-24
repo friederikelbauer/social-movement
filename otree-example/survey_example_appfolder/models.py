@@ -8,9 +8,9 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
+import random
 
 
-# todo: randomization of the groups
 author = '''Team Social Movement, 
 Friederike Bauer, Leslie Fischer, Lina Jeannot, Freya Moßig, Pascal Mounchid, Anna Schleiter Nielsen'''
 doc = '''Social Movements:
@@ -22,30 +22,38 @@ class Constants(BaseConstants):
     num_rounds = 1
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        '''we are declaring the group assignment here'''
+        for p in self.get_players():
+            p.sm_group_assignment = random.Random().randint(1, 3)
+
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    # todo: noch anfang der Seite hinzu
+
+# Social Movement (sm) variables
+    #general varibles
+    sm_group_assignment = models.IntegerField(initial=-999)
+    #TreatmentPage
+    sm_participation = models.IntegerField(initial=-999)
     #ParticipationPage
-    participation = models.IntegerField(initial=-999)
-    topic_relevance = models.IntegerField(initial = -999)
-    familiar_people = models.IntegerField(initial=-999)
-    booked = models.IntegerField(initial=-999)
-    transportation = models.IntegerField(initial = -999)
-    reach = models.IntegerField(initial=-999)
-    crowd = models.IntegerField(initial=-999)
-    polarization = models.IntegerField(initial=-999)
-    riots = models.IntegerField(initial=-999)
-    participation_else = models.StringField(blank=True) #voluntary
+    sm_topic_relevance = models.IntegerField(initial = -999)
+    sm_familiar_people = models.IntegerField(initial=-999)
+    sm_booked = models.IntegerField(initial=-999)
+    sm_transportation = models.IntegerField(initial = -999)
+    sm_reach = models.IntegerField(initial=-999)
+    sm_crowd = models.IntegerField(initial=-999)
+    sm_polarization = models.IntegerField(initial=-999)
+    sm_riots = models.IntegerField(initial=-999)
+    sm_participation_else = models.StringField(blank=True) #voluntary
     #PoliticalPage
-    political_participation = models.IntegerField(initial=-999)
-    political_influence = models.IntegerField(initial=-999)
-    political_chance = models.IntegerField(initial=-999)
-    future = models.IntegerField(initial=-999)
-    unsure = models.IntegerField(initial=-999)
-    olddays = models.IntegerField(initial=-999)
+    sm_political_participation = models.IntegerField(initial=-999)
+    sm_political_influence = models.IntegerField(initial=-999)
+    sm_political_chance = models.IntegerField(initial=-999)
+    sm_future = models.IntegerField(initial=-999)
+    sm_unsure = models.IntegerField(initial=-999)
+    sm_olddays = models.IntegerField(initial=-999)
                         

@@ -10,17 +10,20 @@ class Welcome(Page):
 
 class TreatmentPage(Page):
     form_model = Player
-    form_fields = []
+    form_fields = ['sm_participation']
+
+    def vars_for_template(self):
+        return {'sm_group_assignment': safe_json(self.player.sm_group_assignment)}
 
 class ParticipationPage(Page):
     form_model = Player
-    form_fields=['participation', 'topic_relevance', 'familiar_people', 'booked', 'transportation', 'reach', 'crowd', 
-    'polarization', 'riots', 'participation_else']
+    form_fields=['sm_topic_relevance', 'sm_familiar_people', 'sm_booked', 'sm_transportation', 'sm_reach', 'sm_crowd', 
+    'sm_polarization', 'sm_riots', 'sm_participation_else']
 
 class PoliticalPage(Page):
     form_model = Player
-    form_fields=['political_participation', 'political_influence', 'political_chance',
-    'future', 'unsure', 'olddays']
+    form_fields=['sm_political_participation', 'sm_political_influence', 'sm_political_chance',
+    'sm_future', 'sm_unsure', 'sm_olddays']
 
 class EndPage(Page):
 

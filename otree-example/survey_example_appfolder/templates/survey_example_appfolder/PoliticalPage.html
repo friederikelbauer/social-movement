@@ -1,21 +1,17 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 
-
 {% block title %}
+Studie zu sozialen Bewegungen: <br>
+Politische Einstellungen
 {% endblock %}
-
 
 {% block styles %}
 <style>
 table { border-collapse: collapse; }
-.line {
-  border-right:  solid 1px rgb(214,214,214);
-}
-
-
+/* we are using a line to separate the answer options from "I dont't know" */
+.line {border-right:  solid 1px rgb(220,220,220);}
 </style>
-
 {% endblock %}
 
 {% block content %}
@@ -64,63 +60,63 @@ table { border-collapse: collapse; }
                         <th>Wir sollten uns mehr politisch beteiligen, dann können wir die Arbeit der Regierung besser
                             kontrollieren.
                         </th>
-                        <th><input type="radio" name="political_participation" value="1"></th>
-                        <th><input type="radio" name="political_participation" value="2"></th>
-                        <th><input type="radio" name="political_participation" value="3"></th>
-                        <th><input type="radio" name="political_participation" value="4"></th>
-                        <th class='line'><input type="radio" name="political_participation" value="5"></th>
-                        <th><input type="radio" name="political_participation" value="-888" style= 'text-align:right'></th>
+                        <th><input type="radio" name="sm_political_participation" value="1"></th>
+                        <th><input type="radio" name="sm_political_participation" value="2"></th>
+                        <th><input type="radio" name="sm_political_participation" value="3"></th>
+                        <th><input type="radio" name="sm_political_participation" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_political_participation" value="5"></th>
+                        <th><input type="radio" name="sm_political_participation" value="-888" style= 'text-align:right'></th>
                     </tr>
                     <!-- political_influence -->
                     <tr>
                         <th>Wir müssen uns stärker politisch betätigen, damit wir die politischen Entscheidungen
                             beeinflussen können.</th>
-                        <th><input type="radio" name="political_influence" value="1"></th>
-                        <th><input type="radio" name="political_influence" value="2"></th>
-                        <th><input type="radio" name="political_influence" value="3"></th>
-                        <th><input type="radio" name="political_influence" value="4"></th>
-                        <th><input type="radio" name="political_influence" value="5"></th>
-                        <th class='line'><input type="radio" name="political_influence" value="-888"></th>
+                        <th><input type="radio" name="sm_political_influence" value="1"></th>
+                        <th><input type="radio" name="sm_political_influence" value="2"></th>
+                        <th><input type="radio" name="sm_political_influence" value="3"></th>
+                        <th><input type="radio" name="sm_political_influence" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_political_influence" value="5"></th>
+                        <th><input type="radio" name="sm_political_influence" value="-888"></th>
                     </tr>
                     <!-- political_chance -->
                     <tr>
                         <th>Wir sollten die Chance nutzen, uns politisch zu betätigen.</th>
-                        <th><input type="radio" name="political_chance" value="1"></th>
-                        <th><input type="radio" name="political_chance" value="2"></th>
-                        <th><input type="radio" name="political_chance" value="3"></th>
-                        <th><input type="radio" name="political_chance" value="4"></th>
-                        <th><input type="radio" name="political_chance" value="5"></th>
-                        <th class='line'><input type="radio" name="political_chance" value="-888"></th>
+                        <th><input type="radio" name="sm_political_chance" value="1"></th>
+                        <th><input type="radio" name="sm_political_chance" value="2"></th>
+                        <th><input type="radio" name="sm_political_chance" value="3"></th>
+                        <th><input type="radio" name="sm_political_chance" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_political_chance" value="5"></th>
+                        <th><input type="radio" name="sm_political_chance" value="-888"></th>
                     </tr>
                     <!-- future -->
                     <tr>
                         <th>Wenn man an die Zukunft denkt, kann man eigentlich sehr zuversichtlich sein.</th>
-                        <th><input type="radio" name="future" value="1"></th>
-                        <th><input type="radio" name="future" value="2"></th>
-                        <th><input type="radio" name="future" value="3"></th>
-                        <th><input type="radio" name="future" value="4"></th>
-                        <th><input type="radio" name="future" value="5"></th>
-                        <th class='line'><input type="radio" name="future" value="-888"></th>
+                        <th><input type="radio" name="sm_future" value="1"></th>
+                        <th><input type="radio" name="sm_future" value="2"></th>
+                        <th><input type="radio" name="sm_future" value="3"></th>
+                        <th><input type="radio" name="sm_future" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_future" value="5"></th>
+                        <th><input type="radio" name="sm_future" value="-888"></th>
                     </tr>
                     <!-- unsure -->
                     <tr>
                         <th>Wenn man die Ereignisse der letzten Jahre betrachtet, wird man richtig unsicher.</th>
-                        <th><input type="radio" name="unsure" value="1"></th>
-                        <th><input type="radio" name="unsure" value="2"></th>
-                        <th><input type="radio" name="unsure" value="3"></th>
-                        <th><input type="radio" name="unsure" value="4"></th>
-                        <th><input type="radio" name="unsure" value="5"></th>
-                        <th class='line'><input type="radio" name="unsure" value="-888"></th>
+                        <th><input type="radio" name="sm_unsure" value="1"></th>
+                        <th><input type="radio" name="sm_unsure" value="2"></th>
+                        <th><input type="radio" name="sm_unsure" value="3"></th>
+                        <th><input type="radio" name="sm_unsure" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_unsure" value="5"></th>
+                        <th><input type="radio" name="sm_unsure" value="-888"></th>
                     </tr>
                     <!-- olddays -->
                     <tr>
                         <th>Früher waren die Leute besser dran, weil jeder wusste, was er zu tun hatte.</th>
-                        <th><input type="radio" name="olddays" value="1"></th>
-                        <th><input type="radio" name="olddays" value="2"></th>
-                        <th><input type="radio" name="olddays" value="3"></th>
-                        <th><input type="radio" name="olddays" value="4"></th>
-                        <th><input type="radio" name="olddays" value="5"></th>
-                        <th class='line'><input type="radio" name="olddays" value="-888"></th>
+                        <th><input type="radio" name="sm_olddays" value="1"></th>
+                        <th><input type="radio" name="sm_olddays" value="2"></th>
+                        <th><input type="radio" name="sm_olddays" value="3"></th>
+                        <th><input type="radio" name="sm_olddays" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_olddays" value="5"></th>
+                        <th><input type="radio" name="sm_olddays" value="-888"></th>
                     </tr>
                 </tbody>
             </table>
