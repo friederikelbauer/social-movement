@@ -14,7 +14,17 @@ table { border-collapse: collapse; }
 </style>
 {% endblock %}
 
+{% block scripts %}
+<script>
+    var time = new Date();
+    var time = time.toISOString();
+    document.getElementById('time').value = time;
+</script>
+{% endblock %}
+
 {% block content %}
+<input id="time" type="hidden" name="sm_time_politicalpage" />
+
 <br>
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
     Hier werden wir noch politische Einstellungen abfragen.
@@ -57,40 +67,39 @@ table { border-collapse: collapse; }
                     </tr>
                     <!-- political_participation -->
                     <tr>
-                        <th>Wir sollten uns mehr politisch beteiligen, dann können wir die Arbeit der Regierung besser
-                            kontrollieren.
+                        <th>Die ganze Politik ist so kompliziert, dass jemand wie ich gar nicht versteht, was vorgeht.
                         </th>
-                        <th><input type="radio" name="sm_political_participation" value="1"></th>
-                        <th><input type="radio" name="sm_political_participation" value="2"></th>
-                        <th><input type="radio" name="sm_political_participation" value="3"></th>
-                        <th><input type="radio" name="sm_political_participation" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_political_participation" value="5"></th>
-                        <th><input type="radio" name="sm_political_participation" value="-888" style= 'text-align:right'></th>
+                        <th><input type="radio" name="sm_missing_knowledge" value="1"></th>
+                        <th><input type="radio" name="sm_missing_knowledge" value="2"></th>
+                        <th><input type="radio" name="sm_missing_knowledge" value="3"></th>
+                        <th><input type="radio" name="sm_missing_knowledge" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_missing_knowledge" value="5"></th>
+                        <th><input type="radio" name="sm_missing_knowledge" value="-888" style= 'text-align:right'></th>
                     </tr>
-                    <!-- political_influence -->
+                    <!-- own_knowledge -->
                     <tr>
                         <th>Wir müssen uns stärker politisch betätigen, damit wir die politischen Entscheidungen
                             beeinflussen können.</th>
-                        <th><input type="radio" name="sm_political_influence" value="1"></th>
-                        <th><input type="radio" name="sm_political_influence" value="2"></th>
-                        <th><input type="radio" name="sm_political_influence" value="3"></th>
-                        <th><input type="radio" name="sm_political_influence" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_political_influence" value="5"></th>
-                        <th><input type="radio" name="sm_political_influence" value="-888"></th>
+                        <th><input type="radio" name="sm_own_knowledge" value="1"></th>
+                        <th><input type="radio" name="sm_own_knowledge" value="2"></th>
+                        <th><input type="radio" name="sm_own_knowledge" value="3"></th>
+                        <th><input type="radio" name="sm_own_knowledge" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_own_knowledge" value="5"></th>
+                        <th><input type="radio" name="sm_own_knowledge" value="-888"></th>
                     </tr>
-                    <!-- political_chance -->
+                    <!-- general_knowledge -->
                     <tr>
-                        <th>Wir sollten die Chance nutzen, uns politisch zu betätigen.</th>
-                        <th><input type="radio" name="sm_political_chance" value="1"></th>
-                        <th><input type="radio" name="sm_political_chance" value="2"></th>
-                        <th><input type="radio" name="sm_political_chance" value="3"></th>
-                        <th><input type="radio" name="sm_political_chance" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_political_chance" value="5"></th>
-                        <th><input type="radio" name="sm_political_chance" value="-888"></th>
+                        <th>Die Durschnittsbürger*innen verstehen nur wenig von Politik.</th>
+                        <th><input type="radio" name="sm_general_knowledge" value="1"></th>
+                        <th><input type="radio" name="sm_general_knowledge" value="2"></th>
+                        <th><input type="radio" name="sm_general_knowledge" value="3"></th>
+                        <th><input type="radio" name="sm_general_knowledge" value="4"></th>
+                        <th class='line'><input type="radio" name="sm_general_knowledge" value="5"></th>
+                        <th><input type="radio" name="sm_general_knowledge" value="-888"></th>
                     </tr>
                     <!-- future -->
                     <tr>
-                        <th>Wenn man an die Zukunft denkt, kann man eigentlich sehr zuversichtlich sein.</th>
+                        <th>Wenn ich an die Zukunft denke, kann ich eigentlich sehr zuversichtlich sein.</th>
                         <th><input type="radio" name="sm_future" value="1"></th>
                         <th><input type="radio" name="sm_future" value="2"></th>
                         <th><input type="radio" name="sm_future" value="3"></th>
@@ -100,7 +109,7 @@ table { border-collapse: collapse; }
                     </tr>
                     <!-- unsure -->
                     <tr>
-                        <th>Wenn man die Ereignisse der letzten Jahre betrachtet, wird man richtig unsicher.</th>
+                        <th>Wenn ich die Ereignisse der letzten Jahre betrachtet, werde ich unsicher.</th>
                         <th><input type="radio" name="sm_unsure" value="1"></th>
                         <th><input type="radio" name="sm_unsure" value="2"></th>
                         <th><input type="radio" name="sm_unsure" value="3"></th>

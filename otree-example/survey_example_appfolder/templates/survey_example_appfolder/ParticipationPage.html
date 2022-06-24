@@ -15,7 +15,18 @@ table { border-collapse: collapse; }
 </style>
 {% endblock %}
 
+{% block scripts %}
+<script>
+    var time = new Date();
+    var time = time.toISOString();
+    document.getElementById('time').value = time;
+</script>
+
+{% endblock %}
+
 {% block content %}
+<input id="time" type="hidden" name="sm_time_participationpage" />
+
 <!-- todo: custom error message? Layout? -->
 <br>
 <!-- table asking what influences their willingness to participate -->

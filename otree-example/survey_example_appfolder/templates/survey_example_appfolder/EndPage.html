@@ -6,7 +6,17 @@
 Studie zu sozialen Bewegungen
 {% endblock %}
 
+{% block scripts %}
+<script>
+    var time = new Date();
+    var time = time.toISOString();
+    document.getElementById('time').value = time;
+</script>
+{% endblock %}
+
+
 {% block content %}
+<input id="time" type="hidden" name="sm_time_endpage" />
 <br>
 Vielen Dank für ihre Teilnahme an diesem Teil der Studie. <br>
 Bitte klicken Sie auf 'Weiter' um zum nächsten Teil zu gelangen.
