@@ -26,12 +26,11 @@ table { border-collapse: collapse; }
 <input id="time" type="hidden" name="sm_time_politicalpage" />
 
 <br>
-<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
-    Hier werden wir noch politische Einstellungen abfragen.
-</div>
+
 <!-- table asking about political preferences -->
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
     <fieldset>
+        <div class="table-responsive">
         <div class="table">
             <table class="table w-auto"> Inwieweit stimmen Sie den Folgenden Aussagen zu oder nicht zu?
                 <tr>
@@ -78,8 +77,7 @@ table { border-collapse: collapse; }
                     </tr>
                     <!-- own_knowledge -->
                     <tr>
-                        <th>Wir müssen uns stärker politisch betätigen, damit wir die politischen Entscheidungen
-                            beeinflussen können.</th>
+                        <th>Wir müssen uns mehr beteiligen, damit wir die politischen Entscheidungen beeinflussen können.</th>
                         <th><input type="radio" name="sm_own_knowledge" value="1"></th>
                         <th><input type="radio" name="sm_own_knowledge" value="2"></th>
                         <th><input type="radio" name="sm_own_knowledge" value="3"></th>
@@ -109,6 +107,7 @@ table { border-collapse: collapse; }
                     </tr>
                     <!-- unsure -->
                     <tr>
+                        <!-- todo: delete -->
                         <th>Wenn ich die Ereignisse der letzten Jahre betrachtet, werde ich unsicher.</th>
                         <th><input type="radio" name="sm_unsure" value="1"></th>
                         <th><input type="radio" name="sm_unsure" value="2"></th>
@@ -131,6 +130,7 @@ table { border-collapse: collapse; }
             </table>
         </div>
     </fieldset>
+</div>
 </div>
 
 <button class="otree-btn-next btn btn-primary next-button otree-next-button">

@@ -29,20 +29,57 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    pass
+    #gender groups
+    gender_group_male = models.IntegerField(initial = 0)
+    gender_group_female = models.IntegerField(initial = 0)
+   
+    #federalstate groups
+    fd_1 = models.IntegerField(initial = 0)
+    fd_2 = models.IntegerField(initial = 0)
+    fd_3  = models.IntegerField(initial = 0)
+    fd_4 = models.IntegerField(initial = 0)
+    fd_5 = models.IntegerField(initial = 0)
+    fd_6 = models.IntegerField(initial = 0)
+    fd_7 = models.IntegerField(initial = 0)
+    fd_8 = models.IntegerField(initial = 0)
+    fd_9 = models.IntegerField(initial = 0)
+    fd_10 = models.IntegerField(initial = 0)
+    fd_11 = models.IntegerField(initial = 0)
+    fd_12 = models.IntegerField(initial = 0)
+    fd_13 = models.IntegerField(initial = 0)
+    fd_14 = models.IntegerField(initial = 0)
+    fd_15 = models.IntegerField(initial = 0)
+    fd_16 = models.IntegerField(initial = 0)
+
+    #age groups
+    age_1 = models.IntegerField(initial = 0)
+    age_2 = models.IntegerField(initial = 0)
+    age_3 = models.IntegerField(initial = 0)
+    age_4 = models.IntegerField(initial = 0)
+    age_5 = models.IntegerField(initial = 0)
+    age_6 = models.IntegerField(initial = 0)
 
 
 class Player(BasePlayer):
+    #general variables
+    # screenout = models.IntegerField(initial=0)
+    quota = models.IntegerField(initial=0)
+    age = models.IntegerField(initial = -999)
+    gender = models.IntegerField(initial=-999)
+    federalstate = models.IntegerField(initial=-999)
+
+#General Pages
+    time_endpage = models.StringField(initial=-999)
 
 # Social Movement (sm) variables
     #general variables
     sm_group_assignment = models.IntegerField(initial=-999)
-    #Welcome
+    #SmWelcome
     sm_time_welcome = models.StringField(initial=-999)
-    #TreatmentPage
+    #SmTreatmentPage
     sm_time_treatmentpage = models.StringField(initial=-999)
     sm_participation = models.IntegerField(initial=-999)
-    #ParticipationPage
+    #SmParticipationPage
     sm_time_participationpage = models.StringField(initial=-999)
     sm_topic_relevance = models.IntegerField(initial = -999)
     sm_familiar_people = models.IntegerField(initial=-999)
@@ -53,7 +90,7 @@ class Player(BasePlayer):
     sm_polarization = models.IntegerField(initial=-999)
     sm_riots = models.IntegerField(initial=-999)
     sm_participation_else = models.StringField(blank=True) #voluntary
-    #PoliticalPage
+    #SmPoliticalPage
     sm_time_politicalpage = models.StringField(initial=-999)
     sm_missing_knowledge = models.IntegerField(initial=-999)
     sm_own_knowledge = models.IntegerField(initial=-999)
@@ -61,7 +98,7 @@ class Player(BasePlayer):
     sm_future = models.IntegerField(initial=-999)
     sm_unsure = models.IntegerField(initial=-999)
     sm_olddays = models.IntegerField(initial=-999)
-    #DemonstrationPage
+    #SmDemonstrationPage
     sm_time_demonstrationpage = models.StringField(initial=-999)
     sm_demonstration_change = models.IntegerField(initial=-999)
     sm_demonstration_democracy = models.IntegerField(initial=-999)
