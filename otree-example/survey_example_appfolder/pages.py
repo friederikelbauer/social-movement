@@ -6,7 +6,7 @@ from  survey_example_appfolder.HelperFunctions import filtering, counting
 #General Welcome and Quota Page
 class Welcome(Page):
     form_model = Player
-    form_fields = [] #todo add time, page and text
+    form_fields = ['time_welcome', 'device_type', 'operating_system', 'screen_width', 'screen_height']
 
 class SmWelcome(Page):
     form_model = Player
@@ -14,7 +14,7 @@ class SmWelcome(Page):
 
 class QuotaPage(Page):
     form_model = Player
-    form_fields = ['age', 'gender', 'federalstate'] #todo: add time and meta data variables
+    form_fields = ['age', 'gender', 'federalstate'] #todo: add time 
     def before_next_page(self):
         filtering(self)
 
@@ -23,7 +23,8 @@ class SmTreatmentPage(Page):
     form_model = Player
     form_fields = ['sm_time_treatmentpage', 'sm_participation']
     def vars_for_template(self):
-        return {'sm_group_assignment': safe_json(self.player.sm_group_assignment)}
+        return {'sm_group_assignment': safe_json(self.player.sm_group_assignment),
+                'device_type': safe_json(self.player.device_type)}
 
 class SmParticipationPage(Page):
     form_model = Player

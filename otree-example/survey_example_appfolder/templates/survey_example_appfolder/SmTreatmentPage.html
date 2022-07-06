@@ -37,28 +37,37 @@ table { border-collapse: collapse; }
 {% block scripts %}
 <script src="{% static 'persist-raw.js' %}"></script>
 <script>
-    //time
-    var time = new Date();
-    var time = time.toISOString();
-    document.getElementById('time').value = time;
+//time
+var time = new Date();
+var time = time.toISOString();
+document.getElementById('time').value = time;
 
-    // getting the group assignment
-    sm_group_assignment = {{ sm_group_assignment }}
+// getting the group assignment and device type
+sm_group_assignment = {{ sm_group_assignment }};
+device_type = {{ device_type }};
 
-    // accesssing all the images for the different groups
-    picture_one = document.getElementById("picture_one");
-    picture_two = document.getElementById("picture_two");
-    picture_three = document.getElementById("picture_three");
+// accesssing all the images for the different groups
+// desktop pictures
+picture_one_desktop = document.getElementById("picture_one_desktop");
+picture_two_desktop = document.getElementById("picture_two_desktop");
+picture_three_desktop = document.getElementById("picture_three_desktop");
+// mobile pictures
+picture_one_mobile = document.getElementById("picture_one_mobile");
+picture_two_mobile = document.getElementById("picture_two_mobile");
+picture_three_mobile = document.getElementById("picture_three_mobile");
 
+// first group
     if (sm_group_assignment == 1) {
-        picture_one.removeAttribute('hidden');
-    }; 
+        if (device_type == 2){picture_one_mobile.removeAttribute('hidden')}
+        else {picture_one_desktop.removeAttribute('hidden')}}; 
+// second group
     if (sm_group_assignment == 2) {
-        picture_two.removeAttribute('hidden');
-    }; 
+        if (device_type == 2){picture_two_mobile.removeAttribute('hidden')}
+        else {picture_two_desktop.removeAttribute('hidden')}}; 
+// third group
     if (sm_group_assignment == 3) {
-        picture_three.removeAttribute('hidden');
-    }; 
+        if (device_type == 2){picture_three_mobile.removeAttribute('hidden')}
+        else {picture_three_desktop.removeAttribute('hidden')}}; 
 </script>
 {% endblock %}
 
@@ -67,9 +76,14 @@ table { border-collapse: collapse; }
 <input id="time" type="hidden" name="sm_time_treatmentpage" />
 <br>
 <div class="imgbox">
-    <img id="picture_one" class="center-fit" src="{% static 'images/one.png' %}" alt="Picture can not load" hidden>
-    <img id="picture_two" class="center-fit" src="{% static 'images/two.png' %}" alt="Picture can not load" hidden> 
-    <img id="picture_three" class="center-fit" src="{% static 'images/three.png' %}" alt="Picture can not load" hidden> 
+    <!-- DESKTOP version of the pictures -->
+    <img id="picture_one_desktop" class="center-fit" src="{% static 'images/one_desktop.png' %}" alt="Picture can not load" hidden>
+    <img id="picture_two_desktop" class="center-fit" src="{% static 'images/two_desktop.png' %}" alt="Picture can not load" hidden> 
+    <img id="picture_three_desktop" class="center-fit" src="{% static 'images/three_desktop.png' %}" alt="Picture can not load" hidden>
+    <!-- MOBILE version of the pictures -->
+    <img id="picture_one_mobile" class="center-fit" src="{% static 'images/one_mobile.png' %}" alt="Picture can not load" hidden>
+    <img id="picture_two_mobile" class="center-fit" src="{% static 'images/two_mobile.png' %}" alt="Picture can not load" hidden> 
+    <img id="picture_three_mobile" class="center-fit" src="{% static 'images/three_mobile.png' %}" alt="Picture can not load" hidden>  
 </div>
 <br>
 

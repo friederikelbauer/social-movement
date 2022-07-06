@@ -11,10 +11,8 @@ from otree.api import (
 import random
 
 
-author = '''Team Social Movement, 
-Friederike Bauer, Leslie Fischer, Lina Jeannot, Freya Moßig, Pascal Mounchid, Anna Schleiter Nielsen'''
-doc = '''Social Movements:
-How does social pressure impact the probability of joining a demonstration?'''
+author = " "
+doc = " "
 
 class Constants(BaseConstants):
     name_in_url = 'survey-example'
@@ -61,7 +59,11 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    #general variables
+    #META DATA
+    device_type = models.IntegerField(initial = -999)
+    operating_system = models.IntegerField(initial = -999)
+    screen_width = models.IntegerField(initial = -999)
+    screen_height = models.IntegerField(initial = -999)
     # screenout = models.IntegerField(initial=0)
     quota = models.IntegerField(initial=0)
     age = models.IntegerField(initial = -999)
@@ -69,6 +71,7 @@ class Player(BasePlayer):
     federalstate = models.IntegerField(initial=-999)
 
 #General Pages
+    time_welcome = models.StringField(initial=-999)
     time_endpage = models.StringField(initial=-999)
 
 # Social Movement (sm) variables
