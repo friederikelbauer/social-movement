@@ -15,6 +15,7 @@ table { border-collapse: collapse; }
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'persist-raw.js' %}"></script>
 <script>
     var time = new Date();
     var time = time.toISOString();
@@ -68,63 +69,62 @@ table { border-collapse: collapse; }
                     <tr>
                         <th>Die ganze Politik ist so kompliziert, dass jemand wie ich gar nicht versteht, was vorgeht.
                         </th>
-                        <th><input type="radio" name="sm_missing_knowledge" value="1"></th>
-                        <th><input type="radio" name="sm_missing_knowledge" value="2"></th>
-                        <th><input type="radio" name="sm_missing_knowledge" value="3"></th>
-                        <th><input type="radio" name="sm_missing_knowledge" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_missing_knowledge" value="5"></th>
-                        <th><input type="radio" name="sm_missing_knowledge" value="-888" style= 'text-align:right'></th>
+                        <th><input class="persist" type="radio" name="sm_missing_knowledge" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_missing_knowledge" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_missing_knowledge" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_missing_knowledge" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_missing_knowledge" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_missing_knowledge" value="-888" style= 'text-align:right'></th>
                     </tr>
                     <!-- own_knowledge -->
                     <tr>
                         <th>Wir müssen uns mehr beteiligen, damit wir die politischen Entscheidungen beeinflussen können.</th>
-                        <th><input type="radio" name="sm_own_knowledge" value="1"></th>
-                        <th><input type="radio" name="sm_own_knowledge" value="2"></th>
-                        <th><input type="radio" name="sm_own_knowledge" value="3"></th>
-                        <th><input type="radio" name="sm_own_knowledge" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_own_knowledge" value="5"></th>
-                        <th><input type="radio" name="sm_own_knowledge" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_own_knowledge" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_own_knowledge" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_own_knowledge" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_own_knowledge" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_own_knowledge" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_own_knowledge" value="-888"></th>
                     </tr>
                     <!-- general_knowledge -->
                     <tr>
                         <th>Die Durschnittsbürger*innen verstehen nur wenig von Politik.</th>
-                        <th><input type="radio" name="sm_general_knowledge" value="1"></th>
-                        <th><input type="radio" name="sm_general_knowledge" value="2"></th>
-                        <th><input type="radio" name="sm_general_knowledge" value="3"></th>
-                        <th><input type="radio" name="sm_general_knowledge" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_general_knowledge" value="5"></th>
-                        <th><input type="radio" name="sm_general_knowledge" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_general_knowledge" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_general_knowledge" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_general_knowledge" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_general_knowledge" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_general_knowledge" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_general_knowledge" value="-888"></th>
                     </tr>
                     <!-- future -->
                     <tr>
                         <th>Wenn ich an die Zukunft denke, kann ich eigentlich sehr zuversichtlich sein.</th>
-                        <th><input type="radio" name="sm_future" value="1"></th>
-                        <th><input type="radio" name="sm_future" value="2"></th>
-                        <th><input type="radio" name="sm_future" value="3"></th>
-                        <th><input type="radio" name="sm_future" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_future" value="5"></th>
-                        <th><input type="radio" name="sm_future" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_future" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_future" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_future" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_future" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_future" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_future" value="-888"></th>
                     </tr>
                     <!-- unsure -->
                     <tr>
-                        <!-- todo: delete -->
-                        <th>Wenn ich die Ereignisse der letzten Jahre betrachtet, werde ich unsicher.</th>
-                        <th><input type="radio" name="sm_unsure" value="1"></th>
-                        <th><input type="radio" name="sm_unsure" value="2"></th>
-                        <th><input type="radio" name="sm_unsure" value="3"></th>
-                        <th><input type="radio" name="sm_unsure" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_unsure" value="5"></th>
-                        <th><input type="radio" name="sm_unsure" value="-888"></th>
+                        <th>Wenn ich die Ereignisse der letzten Jahre betrachte, werde ich unsicher.</th>
+                        <th><input class="persist" type="radio" name="sm_unsure" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_unsure" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_unsure" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_unsure" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_unsure" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_unsure" value="-888"></th>
                     </tr>
                     <!-- olddays -->
                     <tr>
-                        <th>Früher waren die Leute besser dran, weil jeder wusste, was er zu tun hatte.</th>
-                        <th><input type="radio" name="sm_olddays" value="1"></th>
-                        <th><input type="radio" name="sm_olddays" value="2"></th>
-                        <th><input type="radio" name="sm_olddays" value="3"></th>
-                        <th><input type="radio" name="sm_olddays" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_olddays" value="5"></th>
-                        <th><input type="radio" name="sm_olddays" value="-888"></th>
+                        <th>Früher waren die Leute besser dran, weil jede*r wusste, was er zu tun hatte.</th>
+                        <th><input class="persist" type="radio" name="sm_olddays" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_olddays" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_olddays" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_olddays" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_olddays" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_olddays" value="-888"></th>
                     </tr>
                 </tbody>
             </table>

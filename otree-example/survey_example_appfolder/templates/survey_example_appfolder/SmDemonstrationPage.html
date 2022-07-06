@@ -15,6 +15,7 @@ table { border-collapse: collapse; }
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'persist-raw.js' %}"></script>
 <script>
     var time = new Date();
     var time = time.toISOString();
@@ -67,62 +68,62 @@ table { border-collapse: collapse; }
                     <tr>
                         <th>Durch Demonstrationen können keine politische Veränderungen bewirkt werden. 
                         </th>
-                        <th><input type="radio" name="sm_demonstration_change" value="1"></th>
-                        <th><input type="radio" name="sm_demonstration_change" value="2"></th>
-                        <th><input type="radio" name="sm_demonstration_change" value="3"></th>
-                        <th><input type="radio" name="sm_demonstration_change" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_demonstration_change" value="5"></th>
-                        <th><input type="radio" name="sm_demonstration_change" value="-888" style= 'text-align:right'></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_change" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_change" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_change" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_change" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_demonstration_change" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_change" value="-888" style= 'text-align:right'></th>
                     </tr>
                     <!-- demonstration_democracy -->
                     <tr>
                         <th>Demonstrationen sind ein wichtiger Bestandteil einer funktionierenden Demokratie.</th>
-                        <th><input type="radio" name="sm_demonstration_democracy" value="1"></th>
-                        <th><input type="radio" name="sm_demonstration_democracy" value="2"></th>
-                        <th><input type="radio" name="sm_demonstration_democracy" value="3"></th>
-                        <th><input type="radio" name="sm_demonstration_democracy" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_demonstration_democracy" value="5"></th>
-                        <th><input type="radio" name="sm_demonstration_democracy" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_democracy" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_democracy" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_democracy" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_democracy" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_demonstration_democracy" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_democracy" value="-888"></th>
                     </tr>
                     <!-- demonstration_views -->
                     <tr>
                         <th>Mit der Teilnahme an Demonstrationen kann ich meinen politischen Ansichten Ausdruck verleihen.</th>
-                        <th><input type="radio" name="sm_demonstration_views" value="1"></th>
-                        <th><input type="radio" name="sm_demonstration_views" value="2"></th>
-                        <th><input type="radio" name="sm_demonstration_views" value="3"></th>
-                        <th><input type="radio" name="sm_demonstration_views" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_demonstration_views" value="5"></th>
-                        <th><input type="radio" name="sm_demonstration_views" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_views" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_views" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_views" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_views" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_demonstration_views" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_demonstration_views" value="-888"></th>
                     </tr>
                     <!-- politicians -->
                     <tr>
                         <th>Die Politiker*innen kümmern sich nicht viel darum, was Leute wie ich denken.</th>
-                        <th><input type="radio" name="sm_politicians" value="1"></th>
-                        <th><input type="radio" name="sm_politicians" value="2"></th>
-                        <th><input type="radio" name="sm_politicians" value="3"></th>
-                        <th><input type="radio" name="sm_politicians" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_politicians" value="5"></th>
-                        <th><input type="radio" name="sm_politicians" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_politicians" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_politicians" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_politicians" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_politicians" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_politicians" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_politicians" value="-888"></th>
                     </tr>
                     <!-- influence -->
                     <tr>
                         <th>Leute wie ich haben keinen Einfluss darauf, was die Regierung tut.</th>
-                        <th><input type="radio" name="sm_influence" value="1"></th>
-                        <th><input type="radio" name="sm_influence" value="2"></th>
-                        <th><input type="radio" name="sm_influence" value="3"></th>
-                        <th><input type="radio" name="sm_influence" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_influence" value="5"></th>
-                        <th><input type="radio" name="sm_influence" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_influence" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_influence" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_influence" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_influence" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_influence" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_influence" value="-888"></th>
                     </tr>
                     <!-- interests -->
                     <tr>
-                        <th>Früher waren die Leute besser dran, weil jeder wusste, was er zu tun hatte.</th>
-                        <th><input type="radio" name="sm_interests" value="1"></th>
-                        <th><input type="radio" name="sm_interests" value="2"></th>
-                        <th><input type="radio" name="sm_interests" value="3"></th>
-                        <th><input type="radio" name="sm_interests" value="4"></th>
-                        <th class='line'><input type="radio" name="sm_interests" value="5"></th>
-                        <th><input type="radio" name="sm_interests" value="-888"></th>
+                        <th>Früher waren die Leute besser dran, weil jede*r wusste, was er zu tun hatte.</th>
+                        <th><input class="persist" type="radio" name="sm_interests" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_interests" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_interests" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_interests" value="4"></th>
+                        <th class='line'><input class="persist" type="radio" name="sm_interests" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_interests" value="-888"></th>
                     </tr>
                 </tbody>
             </table>

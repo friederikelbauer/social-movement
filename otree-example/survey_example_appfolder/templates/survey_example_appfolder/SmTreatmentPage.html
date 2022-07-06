@@ -35,6 +35,7 @@ table { border-collapse: collapse; }
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'persist-raw.js' %}"></script>
 <script>
     //time
     var time = new Date();
@@ -62,6 +63,7 @@ table { border-collapse: collapse; }
 {% endblock %}
 
 {% block content %}
+{{ formfield_errors 'sm_participation' }}
 <input id="time" type="hidden" name="sm_time_treatmentpage" />
 <br>
 <div class="imgbox">
@@ -72,7 +74,7 @@ table { border-collapse: collapse; }
 <br>
 
 <div class="mb-3 bg-light border pt-2 pb-2 px-2">
-    Nehmen Sie sich bitte Zeit dieses Facebook-Event anzuschauen und zoomen Sie auch gerne bei Bedarf heran. 
+    Nehmen Sie sich bitte Zeit dieses Facebook-Event anzuschauen und zoomen Sie auch gerne bei Bedarf heran. Bei diesem Event geht um eine Demonstration für Demokratie.
     <br>
     <br>
     Auf den folgenden Seiten werden Ihnen dazu Fragen gestellt und es wird <b>keine</b> Möglichkeit geben zurückzugehen. 
@@ -113,12 +115,12 @@ table { border-collapse: collapse; }
                         <th class="line">5</th>
                     </tr>
                     <tr>
-                        <th><input type="radio" name="sm_participation" value="1"></th>
-                        <th><input type="radio" name="sm_participation" value="2"></th>
-                        <th><input type="radio" name="sm_participation" value="3"></th>
-                        <th><input type="radio" name="sm_participation" value="4"></th>
-                        <th class="line"><input type="radio" name="sm_participation" value="5"></th>
-                        <th><input type="radio" name="sm_participation" value="-888"></th>
+                        <th><input class="persist" type="radio" name="sm_participation" value="1"></th>
+                        <th><input class="persist" type="radio" name="sm_participation" value="2"></th>
+                        <th><input class="persist" type="radio" name="sm_participation" value="3"></th>
+                        <th><input class="persist" type="radio" name="sm_participation" value="4"></th>
+                        <th class="line"><input class="persist" type="radio" name="sm_participation" value="5"></th>
+                        <th><input class="persist" type="radio" name="sm_participation" value="-888"></th>
                     </tr>
                 </tbody>
             </table>
