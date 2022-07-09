@@ -8,17 +8,17 @@ class Welcome(Page):
     form_model = Player
     form_fields = ['time_welcome', 'device_type', 'operating_system', 'screen_width', 'screen_height']
 
-class SmWelcome(Page):
-    form_model = Player
-    form_fields = [] 
-
 class QuotaPage(Page):
     form_model = Player
-    form_fields = ['age', 'gender', 'federalstate'] #todo: add time 
+    form_fields = ['age', 'gender', 'federalstate', 'time_quotapage']
     def before_next_page(self):
         filtering(self)
 
 #Social Movement Pages
+class SmWelcome(Page):
+    form_model = Player
+    form_fields = ['sm_time_welcome'] 
+
 class SmTreatmentPage(Page):
     form_model = Player
     form_fields = ['sm_time_treatmentpage', 'sm_participation']
@@ -44,14 +44,20 @@ class SmDemonstrationPage(Page):
 class SmEndPage(Page):
     form_model = Player
     form_fields=['sm_time_endpage']
-    def before_next_page(self):
-        counting(self) #todo: move further back
+    
 
 #General EndPage
 class EndPage(Page):
     form_model = Player
     form_fields=['time_endpage']
-    
+    def before_next_page(self): 
+        counting(self)
+
+class RedirectPage(Page):
+    form_model = Player
+    form_fields=[] #no time as it would not get recorded as the link is replaced (nothing written to database)
+    def vars_for_template(self):
+        return {"participant_label": safe_json(self.participant.label)}
 
 page_sequence = [
                 #general pages
@@ -66,8 +72,8 @@ page_sequence = [
                 SmPoliticalPage,
                 SmDemonstrationPage,
                 SmEndPage,
-
                 #Ballot Pages
 
                 #General EndPage
-                EndPage]
+                EndPage,
+                RedirectPage]

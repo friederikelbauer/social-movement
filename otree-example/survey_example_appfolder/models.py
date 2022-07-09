@@ -72,6 +72,7 @@ class Player(BasePlayer):
 
 #General Pages
     time_welcome = models.StringField(initial=-999)
+    time_quotapage = models.StringField(initial=-999)
     time_endpage = models.StringField(initial=-999)
 
 # Social Movement (sm) variables

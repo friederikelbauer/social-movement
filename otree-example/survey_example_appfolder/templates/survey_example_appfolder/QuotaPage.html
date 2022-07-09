@@ -3,15 +3,21 @@
 
 {% block scripts %}
 <script src="{% static 'persist-raw.js' %}"></script>
+<script>
+    var time = new Date();
+    var time = time.toISOString();
+    document.getElementById('time').value = time;
+</script>
 {% endblock %}
 
 {% block content %}
-
-<!-- todo: TimeStamp -->
-
+<!-- timestamp -->
+<input id="time" type="hidden" name="time_quotapage" />
+<!-- style pflichtfelder hinweis -->
 <p style="text-align:right;"><b>*Pflichtfelder</b></p>
 
 <!-- gender-->
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
 <p><b>Was ist ihr Geschlecht?*</b></p>
 <input  class="persist" type="radio" name="gender"  value="1"/> Männlich
 <br>
@@ -23,57 +29,55 @@
 <br>
 <input  class="persist" type="radio" name="gender"  value="-999"/> Keine Angabe
 {{formfield_errors 'gender' }}
-<br>
-<br>
+</div>
 <br>
 <!-- age-->
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
 <p><b>In welchem Jahr sind Sie geboren? Bitte geben Sie Ihr Geburtsjahr an*</b></p>
 <input class="persist" type="text" id="age" name="age">
 {{formfield_errors 'age' }}
+</div>
 <br> 
-<br> 
-<br>
-<br>
 <!-- federalstate -->
-<!-- todo: wahlberechtigt oder momentan mit sitz? -->
+<div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
+<!-- todo: wahlberechtigt oder momentan mit sitz in dem bundesland? -->
 <p><b>In welchem Bundesland sind Sie wahlberechtigt?*</b></p> 
-<input type="radio" name="federalstate" value="1"/> Schleswig-Holstein
+<input class="persist" type="radio" name="federalstate" value="1"/> Schleswig-Holstein
 <br>
-<input type="radio" name="federalstate" value="2"/> Hamburg
+<input class="persist" type="radio" name="federalstate" value="2"/> Hamburg
 <br>
-<input type="radio" name="federalstate" value="3"/> Niedersachsen
+<input class="persist" type="radio" name="federalstate" value="3"/> Niedersachsen
 <br>
-<input type="radio" name="federalstate" value="4"/> Bremen
+<input class="persist" type="radio" name="federalstate" value="4"/> Bremen
 <br>
-<input type="radio" name="federalstate" value="5"/> Nordrhein-Westfalen
+<input class="persist" type="radio" name="federalstate" value="5"/> Nordrhein-Westfalen
 <br>
-<input type="radio" name="federalstate" value="6"/> Hessen
+<input class="persist" type="radio" name="federalstate" value="6"/> Hessen
 <br>
-<input type="radio" name="federalstate" value="7"/> Rheinland-Pfalz
+<input class="persist" type="radio" name="federalstate" value="7"/> Rheinland-Pfalz
 <br>
-<input type="radio" name="federalstate" value="8"/> Baden-Württemberg
+<input class="persist" type="radio" name="federalstate" value="8"/> Baden-Württemberg
 <br>
-<input type="radio" name="federalstate" value="9"/> Bayern
+<input class="persist" type="radio" name="federalstate" value="9"/> Bayern
 <br>
-<input type="radio" name="federalstate" value="10"/> Saarland
+<input class="persist" type="radio" name="federalstate" value="10"/> Saarland
 <br>
-<input type="radio" name="federalstate" value="11"/> Berlin
+<input class="persist" type="radio" name="federalstate" value="11"/> Berlin
 <br>
-<input type="radio" name="federalstate" value="12"/> Brandenburg
+<input class="persist" type="radio" name="federalstate" value="12"/> Brandenburg
 <br>
-<input type="radio" name="federalstate" value="13"/> Mecklenburg-Vorpommern
+<input class="persist" type="radio" name="federalstate" value="13"/> Mecklenburg-Vorpommern
 <br>
-<input type="radio" name="federalstate" value="14"/> Sachsen
+<input class="persist" type="radio" name="federalstate" value="14"/> Sachsen
 <br>
-<input type="radio" name="federalstate" value="15"/> Sachsen-Anhalt
+<input class="persist" type="radio" name="federalstate" value="15"/> Sachsen-Anhalt
 <br>
-<input type="radio" name="federalstate" value="16"/> Thüringen
+<input class="persist" type="radio" name="federalstate" value="16"/> Thüringen
 <br>
 <input type="radio" name="federalstate" value="-888"/> weiß nicht
 {{formfield_errors 'federalstate' }}
+</div>
 <br> 
-<br> 
-<br>
 <button class="otree-btn-next btn btn-primary next-button otree-next-button">
     Weiter
 </button>

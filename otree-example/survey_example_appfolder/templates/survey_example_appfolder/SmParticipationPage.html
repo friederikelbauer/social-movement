@@ -1,7 +1,6 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 
-
 {% block title %}
 Studie zu sozialen Bewegungen: <br>
 Was beeinflusst Ihre Teilnahme
@@ -22,13 +21,11 @@ table { border-collapse: collapse; }
     var time = time.toISOString();
     document.getElementById('time').value = time;
 </script>
-
 {% endblock %}
 
 {% block content %}
 <input id="time" type="hidden" name="sm_time_participationpage" />
 
-<!-- todo: custom error message? Layout? -->
 <br>
 <!-- table asking what influences their willingness to participate -->
 <div class="mb-3 bg-light border pt-2 pb-2 px-2 ">
