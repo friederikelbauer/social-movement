@@ -1,0 +1,20 @@
+Data Cleaning of the social movement survey data
+
+```{r}
+install.packages('lubridate')
+library(lubridate)
+```
+
+
+```{r}
+raw <- read.csv('all_apps_wide-2022-09-12_1004.csv', header=T)
+
+raw[['participant.time_started_utc']] <- strptime(raw[['participant.time_started_utc']],
+                                                  format = '%Y-%m-%d %H:%M:%OS',
+                                                  tz = 'utc')
+op <- options(digits.secs=6)
+#attr(raw$participant.time_started_utc, 'tzone') <- 'CET'
+#with_tz(raw$participant.time_started_utc, "CET")
+as.POSIXlt(raw$participant.time_started_utc, tz = 'CET')
+```
+
