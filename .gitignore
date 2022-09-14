@@ -131,3 +131,7 @@ dmypy.json
 #extra
 .DS_Store
 
+# data
+*.csv
+*.xlsx
+
