@@ -28,13 +28,13 @@ df1 <- df %>% filter(as.numeric(starttofinish) <=120)
 
 v2 <- ggplot(df1, aes(x = as.numeric(starttofinish))) +
   geom_histogram(binwidth = 0.5, fill = "lightblue") +
-  geom_vline(aes(xintercept=median(starttofinish, na.rm=TRUE), linetype="Median: 9.4min"),
+  geom_vline(aes(xintercept=median(starttofinish, na.rm=TRUE),linetype="Median: 9.4min"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
   geom_vline(aes(xintercept=mean(starttofinish, na.rm=TRUE), linetype="Mean: 12.9min"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Respondents' survey response time",
+  labs(title = "Survey Response Time",
        subtitle = "This excludes all responses taking longer than 120min.") +
   ylab("Freq.") + xlab("Response Time (minutes)") +
   theme_bw() +
@@ -68,9 +68,9 @@ v4 <- ggplot(df1, aes(x = treatment_exposure)) +
   geom_vline(aes(xintercept=mean(treatment_exposure, na.rm=TRUE), linetype="Mean: 32.9sec"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Exposure time to treatment page",
+  labs(title = "Exposure Time to Treatment Page",
        subtitle = "This excludes all responses taking longer than 5min.") +
-  ylab("Freq.") + xlab("Response Time (seconds)") +
+  ylab("Freq.") + xlab("Exposure Time (seconds)") +
   theme_bw() +
   theme(legend.title=element_blank())
 v4
