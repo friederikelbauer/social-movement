@@ -74,7 +74,7 @@ raw1 <- raw1 %>% mutate( #convert times
 raw1$starttofinish <- raw1$survey_example_appfolder.1.player.time_endpage -
                       raw1$survey_example_appfolder.1.player.time_welcome 
 
-
+raw1 <- raw1 %>% filter(starttofinish <=120)
 
 save(raw1, file = "raw_all.RData")
 ```
