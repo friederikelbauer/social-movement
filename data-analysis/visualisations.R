@@ -14,7 +14,8 @@ load("online_exp_df.RData")
 
 v1 <- ggplot(df, aes(y = as.numeric(starttofinish))) +
                 geom_boxplot(fill = "lightblue") +
-                labs(title = "Respondents' survey reponse time") +
+                labs(title = "Respondents' survey reponse time",
+                     subtitle = "This excludes all responses taking longer than 120min.") +
                 ylab("Response Time (minutes)") +
                 theme_light() +
                 theme(axis.title.x=element_blank(),
@@ -27,13 +28,20 @@ df1 <- df %>% filter(as.numeric(starttofinish) <=120)
 
 v2 <- ggplot(df1, aes(x = as.numeric(starttofinish))) +
   geom_histogram(binwidth = 0.5, fill = "lightblue") +
-  geom_vline(aes(xintercept=median(starttofinish, na.rm=TRUE)), 
-             size=0.5, linetype="longdash", color="darkgrey") +
+  geom_vline(aes(xintercept=median(starttofinish, na.rm=TRUE), linetype="Median: 9.4min"),
+             size=0.5, color="deepskyblue4",
+             show.legend = TRUE) +
+  geom_vline(aes(xintercept=mean(starttofinish, na.rm=TRUE), linetype="Mean: 12.9min"),
+             size=0.5, color="deepskyblue4",
+             show.legend = TRUE) +
   labs(title = "Respondents' survey response time",
        subtitle = "This excludes all responses taking longer than 120min.") +
-  ylab("") + xlab("Response Time (minutes)") +
-  theme_bw()
+  ylab("Freq.") + xlab("Response Time (minutes)") +
+  theme_bw() +
+  theme(legend.title=element_blank())
 v2
+
+summary(as.numeric(df1$starttofinish))
 
 ############################# time spent on treatment page 
 df <- df %>% mutate(treatment_exposure = 
@@ -54,13 +62,20 @@ df1 <- df %>% filter(treatment_exposure <=300)
 
 v4 <- ggplot(df1, aes(x = treatment_exposure)) +
   geom_histogram(binwidth = 1, fill = "lightblue") +
-  geom_vline(aes(xintercept=median(treatment_exposure, na.rm=TRUE)), 
-             size=0.5, linetype="longdash", color="darkgrey") +
-  labs(title = "Time spent on treatment page",
+  geom_vline(aes(xintercept=median(treatment_exposure, na.rm=TRUE), linetype="Median: 25.0sec"),
+             size=0.5, color="deepskyblue4",
+             show.legend = TRUE) +
+  geom_vline(aes(xintercept=mean(treatment_exposure, na.rm=TRUE), linetype="Mean: 32.9sec"),
+             size=0.5, color="deepskyblue4",
+             show.legend = TRUE) +
+  labs(title = "Exposure time to treatment page",
        subtitle = "This excludes all responses taking longer than 5min.") +
-  ylab("") + xlab("Exposure Time (seconds)") +
-  theme_light()
+  ylab("Freq.") + xlab("Response Time (seconds)") +
+  theme_bw() +
+  theme(legend.title=element_blank())
 v4
+
+summary(df1$treatment_exposure)
 
 
 #################### participation
