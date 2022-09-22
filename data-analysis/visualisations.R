@@ -4,6 +4,7 @@
 
 ## imports
 library(tidyverse)
+library(gtsummary)
 
 load("online_exp_df.RData")
 
@@ -59,6 +60,8 @@ v3
 
 # exclude all obs with respondents taking more than 5
 df1 <- df %>% filter(treatment_exposure <=300)
+df2 <- df %>% filter(!is.na(sm_participation))
+df3 <- df %>% filter(treatment_exposure >10)
 
 v4 <- ggplot(df1, aes(x = treatment_exposure)) +
   geom_histogram(binwidth = 1, fill = "lightblue") +
@@ -183,3 +186,24 @@ ggsave("participation.png", plot=v5)
 ggsave("participation_factors.png", plot=v6)
 ggsave("politics.png", plot=v7)
 ggsave("demonstrations.png", plot=v8)
+
+
+
+
+#### tables
+
+tab1 <- df %>% select(sm_participation,sm_group_assignment) %>%
+  tbl_cross(row = sm_participation,
+            col = sm_group_assignment,
+            percent = "cell",
+            missing = "no",
+            label = list(sm_participation ~ "Likelihood of Participation",
+                         sm_group_assignment ~ "Treatment Group"))
+
+tab1
+
+library(gt)
+as_gt(tab1) %>% gt::as_latex()
+
+library(kableExtra)
+as_kable_extra(tab1, format = "latex")
