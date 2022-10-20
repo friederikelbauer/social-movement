@@ -35,8 +35,8 @@ v2 <- ggplot(df1, aes(x = as.numeric(starttofinish))) +
   geom_vline(aes(xintercept=mean(starttofinish, na.rm=TRUE), linetype="Mean: 12.9min"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Survey Response Time",
-       subtitle = "This excludes all responses taking longer than 120min.") +
+  labs(title = "Survey Response Time") + #,
+       #subtitle = "This excludes all responses taking longer than 120min.") +
   ylab("Freq.") + xlab("Response Time (minutes)") +
   theme_bw() +
   theme(legend.title=element_blank())
@@ -71,8 +71,8 @@ v4 <- ggplot(df1, aes(x = treatment_exposure)) +
   geom_vline(aes(xintercept=mean(treatment_exposure, na.rm=TRUE), linetype="Mean: 32.9sec"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Exposure Time to Treatment Page",
-       subtitle = "This excludes all responses taking longer than 5min.") +
+  labs(title = "Exposure Time to Treatment Page") +#,
+       #subtitle = "This excludes all responses taking longer than 5min.") +
   ylab("Freq.") + xlab("Exposure Time (seconds)") +
   theme_bw() +
   theme(legend.title=element_blank())
@@ -91,9 +91,21 @@ v5 <- df %>% filter(!is.na(sm_participation)) %>%
        fill="Treatment Group")+
   ylab("") + xlab("Participation Likelihood") +
   scale_x_discrete(labels= c("Very low", "2", "3", "4", "Very High"))+
-  scale_fill_brewer(palette="Set2")+
+  scale_fill_brewer(palette="Set2", labels=c('1 low', '2 intermediate', '3 high'))+
   theme_light()
 v5
+
+v5_1 <- df %>% filter(!is.na(sm_participation)) %>% 
+  ggplot(aes(x=sm_group_assignment, fill= sm_participation)) +
+  geom_bar(position="dodge") +
+  labs(title="Participation in Demonstration",
+       subtitle="Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?",
+       fill="Participation Likelihood")+
+  ylab("") + xlab("Treatment Group") +
+  scale_x_discrete(labels= c('1 low', '2 intermediate', '3 high'))+
+  scale_fill_brewer(palette="Set2", labels=c("Very low", "2", "3", "4", "Very High"))+
+  theme_light()
+v5_1
 
 
 ##################### participation factors
@@ -183,6 +195,7 @@ ggsave("survey_time_hist.png", plot=v2)
 ggsave("treatment_time_box.png", plot=v3)
 ggsave("treatment_time_hist.png", plot=v4)
 ggsave("participation.png", plot=v5)
+ggsave("participation_2.png", plot=v5_1)
 ggsave("participation_factors.png", plot=v6)
 ggsave("politics.png", plot=v7)
 ggsave("demonstrations.png", plot=v8)
