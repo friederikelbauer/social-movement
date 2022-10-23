@@ -15,8 +15,8 @@ load("online_exp_df.RData")
 
 v1 <- ggplot(df, aes(y = as.numeric(starttofinish))) +
                 geom_boxplot(fill = "lightblue") +
-                labs(title = "Respondents' survey reponse time",
-                     subtitle = "This excludes all responses taking longer than 120min.") +
+                #labs(title = "Respondents' survey reponse time",
+                 #    subtitle = "This excludes all responses taking longer than 120min.") +
                 ylab("Response Time (minutes)") +
                 theme_light() +
                 theme(axis.title.x=element_blank(),
@@ -35,7 +35,7 @@ v2 <- ggplot(df1, aes(x = as.numeric(starttofinish))) +
   geom_vline(aes(xintercept=mean(starttofinish, na.rm=TRUE), linetype="Mean: 12.9min"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Survey Response Time") + #,
+  #labs(title = "Survey Response Time") + #,
        #subtitle = "This excludes all responses taking longer than 120min.") +
   ylab("Freq.") + xlab("Response Time (minutes)") +
   theme_bw() +
@@ -50,7 +50,7 @@ df <- df %>% mutate(treatment_exposure =
 
 v3 <- ggplot(df, aes(y = treatment_exposure)) +
   geom_boxplot(fill = "lightblue") +
-  labs(title = "Time spent on treatment page") +
+  #labs(title = "Time spent on treatment page") +
   ylab("Exposure Time (seconds)") +
   theme_light() +
   theme(axis.title.x=element_blank(),
@@ -71,7 +71,7 @@ v4 <- ggplot(df1, aes(x = treatment_exposure)) +
   geom_vline(aes(xintercept=mean(treatment_exposure, na.rm=TRUE), linetype="Mean: 32.9sec"),
              size=0.5, color="deepskyblue4",
              show.legend = TRUE) +
-  labs(title = "Exposure Time to Treatment Page") +#,
+  #labs(title = "Exposure Time to Treatment Page") +#,
        #subtitle = "This excludes all responses taking longer than 5min.") +
   ylab("Freq.") + xlab("Exposure Time (seconds)") +
   theme_bw() +
@@ -86,9 +86,8 @@ summary(df1$treatment_exposure)
 v5 <- df %>% filter(!is.na(sm_participation)) %>% 
   ggplot(aes(x=sm_participation, fill= sm_group_assignment)) +
   geom_bar(position="dodge") +
-  labs(title="Participation in Demonstration",
-       subtitle="Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?",
-       fill="Treatment Group")+
+  #labs(title="Participation in Demonstration",
+   #    subtitle="Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?", fill="Treatment Group")+
   ylab("") + xlab("Participation Likelihood") +
   scale_x_discrete(labels= c("Very low", "2", "3", "4", "Very High"))+
   scale_fill_brewer(palette="Set2", labels=c('1 low', '2 intermediate', '3 high'))+
@@ -98,12 +97,13 @@ v5
 v5_1 <- df %>% filter(!is.na(sm_participation)) %>% 
   ggplot(aes(x=sm_group_assignment, fill= sm_participation)) +
   geom_bar(position="dodge") +
-  labs(title="Participation in Demonstration",
-       subtitle="Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?",
+  labs(
+  #title="Participation in Demonstration",
+   #    subtitle="Mit welcher Wahrscheinlichkeit würden Sie an dieser Demonstration teilnehmen?",
        fill="Participation Likelihood")+
   ylab("") + xlab("Treatment Group") +
   scale_x_discrete(labels= c('1 low', '2 intermediate', '3 high'))+
-  scale_fill_brewer(palette="Set2", labels=c("Very low", "2", "3", "4", "Very High"))+
+  scale_fill_brewer(palette="Blues", labels=c("Very low", "2", "3", "4", "Very High"))+
   theme_light()
 v5_1
 
@@ -128,8 +128,8 @@ v6 <- participation %>% filter(!is.na(sm_participation)) %>%
                                      "sm_riots" = "Riots",
                                      "sm_topic_relevance" = "Topic Relevance",
                                      "sm_transportation" = "Transportation"))) +
-  labs(title="Factors influencing participation in demonstration",
-       subtitle="Was beeinflusst die Wahrscheinlichkeit Ihrer Teilnahme an der gezeigten Demonstration?")+
+  #labs(title="Factors influencing participation in demonstration",
+   #    subtitle="Was beeinflusst die Wahrscheinlichkeit Ihrer Teilnahme an der gezeigten Demonstration?")+
   ylab("") + xlab("Influence Factor") +
   scale_x_discrete(labels= c("Not at all", "2", "3", "4", "A lot"))+
   scale_fill_brewer(palette="Set2")+
@@ -154,8 +154,8 @@ v7 <- political %>% filter(!is.na(sm_participation)) %>%
                                      "sm_future" = "Optimistic about future",
                                      "sm_unsure" = "Uncertainty since pandemic",
                                      "sm_olddays" = "Things used to be clearer"))) +
-  labs(title="Attitude towards Politics and the Future",
-       subtitle="Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?")+
+  #labs(title="Attitude towards Politics and the Future",
+   #    subtitle="Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?")+
   ylab("") + xlab("Agreement") +
   scale_x_discrete(labels= c("Not at all", "2", "3", "4",  "A lot"))+
   scale_fill_brewer(palette="Set2")+
@@ -175,13 +175,13 @@ v8 <- demo %>% filter(!is.na(sm_participation)) %>%
   facet_wrap(vars(demo_factor), ncol=3,
              labeller = labeller(demo_factor = 
                        c("sm_demonstration_change" = "...cannot bring change",
-                         "sm_demonstration_democracy" = "...for democracy",
-                         "sm_demonstration_views" = "...to express views",
-                         "sm_influence" = "No influence on politics",
+                         "sm_demonstration_democracy" = "...are important \nfor democracy",
+                         "sm_demonstration_views" = "...are a tool \nto express views",
+                         "sm_influence" = "Have no influence on politics",
                          "sm_interests" = "Politicians represent interests",
                          "sm_politicians" = "Politicians don't care about us"))) +
-  labs(title="Attitude towards Politics and Demonstrations",
-       subtitle="Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?")+
+ # labs(title="Attitude towards Politics and Demonstrations",
+  #     subtitle="Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?")+
   ylab("") + xlab("Agreement") +
   scale_x_discrete(labels= c("Not at all", "2", "3", "4",  "A lot"))+
   scale_fill_brewer(palette="Set2")+
