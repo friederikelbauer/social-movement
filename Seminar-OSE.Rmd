@@ -1,0 +1,557 @@
+---
+title: "Seminar OSE"
+author: "Pascal Mounchid"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r}
+library(haven)
+library(tidyverse)
+library(cregg)
+library(readxl)
+library(openxlsx)
+library(lubridate)
+```
+
+```{r}
+setwd("C:/Users/Pasca/OneDrive/8.Semester/Seminar Susumu")
+```
+
+```{r}
+raw <- read.csv('all_apps_wide-2022-09-12_1004.csv', header=T)
+raw[['participant.time_started_utc']] <- strptime(raw[['participant.time_started_utc']],
+                                                  format = '%Y-%m-%d %H:%M:%OS',
+                                                  tz = 'utc')
+op <- options(digits.secs=6)
+#attr(raw$participant.time_started_utc, 'tzone') <- 'CET'
+#with_tz(raw$participant.time_started_utc, "CET")
+as.POSIXlt(raw$participant.time_started_utc, tz = 'CET')
+```
+
+Cleaning 2.0
+
+```{r}
+# drop observations 
+raw1 <- raw %>% filter(participant._is_bot !=1  # recognised as bot
+                        ,survey_example_appfolder.1.player.time_welcome != -999  # did not start survey
+                        ,survey_example_appfolder.1.player.time_endpage != -999  # did not end survey
+                        , ! is.na(participant.label) # no participant label
+                        )
+```
+
+Data Formatting
+```{r}
+raw1 <- raw1 %>% mutate( #convert times
+                          survey_example_appfolder.1.player.time_welcome =
+                          as.POSIXlt(survey_example_appfolder.1.player.time_welcome, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.time_quotapage =
+                          strptime(survey_example_appfolder.1.player.time_quotapage, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.time_endpage =
+                          strptime(survey_example_appfolder.1.player.time_endpage, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.sm_time_treatmentpage =
+                          strptime(survey_example_appfolder.1.player.sm_time_treatmentpage, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.sm_time_demonstrationpage =
+                          strptime(survey_example_appfolder.1.player.sm_time_demonstrationpage, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.sm_time_participationpage =
+                          strptime(survey_example_appfolder.1.player.sm_time_participationpage, 
+                                   format ='%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        , survey_example_appfolder.1.player.sm_time_politicalpage =
+                          strptime(survey_example_appfolder.1.player.sm_time_politicalpage, 
+                                   format = '%Y-%m-%dT%H:%M:%S',
+                                   tz = 'utc')
+                        # rename variables before dropping ba/ch variables
+                        , location = survey_example_appfolder.1.player.ba_location
+                        , immigration1 = survey_example_appfolder.1.player.ba_immigration1
+                        , immigration2 = survey_example_appfolder.1.player.ba_immigration2
+                        , immigration3 = survey_example_appfolder.1.player.ba_immigration3) 
+# time needed for the full survey
+raw1$starttofinish <- raw1$survey_example_appfolder.1.player.time_endpage -
+                      raw1$survey_example_appfolder.1.player.time_welcome 
+save(raw1, file = "raw_all.RData")
+```
+
+```{r}
+# drop all variables of other groups
+columns_ba <- grep("survey_example_appfolder.1.player.ba", names(raw1))
+raw2 <- raw1 %>% select(-columns_ba) 
+columns_ch <- grep("survey_example_appfolder.1.player.ch", names(raw2))
+raw2 <- raw2 %>% select(-columns_ch) 
+# drop prefix from column names
+names(raw2) <- sub('^survey_example_appfolder.1.player.', '', names(raw2))
+save(raw2, file = "raw_no_ba_ch.RData")
+```
+
+```{r}
+# convert social movement and other relevant variables to factors
+raw3 <-raw2 %>% mutate(across(
+                              c(sm_group_assignment,
+                                sm_participation ,
+                                sm_topic_relevance,
+                                sm_familiar_people,
+                                sm_booked,
+                                sm_transportation,
+                                sm_reach,
+                                sm_number,
+                                sm_crowd,
+                                sm_polarization,
+                                sm_riots,
+                                sm_missing_knowledge,
+                                sm_own_knowledge,
+                                sm_general_knowledge,
+                                sm_future,
+                                sm_unsure,
+                                sm_olddays,
+                                sm_demonstration_change,
+                                sm_demonstration_democracy,
+                                sm_demonstration_views,
+                                sm_politicians,
+                                sm_influence,
+                                sm_interests,
+                                therm_spd,
+                                therm_cdu,
+                                therm_csu,
+                                therm_gruene,
+                                therm_fdp,
+                                therm_afd,
+                                therm_linke,
+                                household_income,
+                                general_education,
+                                eligibility,
+                                participation,
+                                demonstration_participation_allowed,
+                                demonstration_participation_notallowed,
+                                demonstration_participation_online,
+                                social_media,
+                                device_type,
+                                operating_system),
+                              as.factor))
+                                  
+save(raw3, file = "raw_factor.RData")
+# turn missing (-999) and "weiß nicht" (-888) answers to NA
+df <- raw3 %>% mutate(across(where(is.factor), ~na_if(., -999)),
+                        across(where(is.factor), ~na_if(., -888)))
+save(df, file = "online_exp_df.RData")
+```
+Reduce the variables 
+
+```{r}
+Data_Full <- df %>% 
+  select(age, 
+         gender, 
+         federalstate, 
+         starts_with("sm"), 
+         starts_with("therm"), 
+         sm_own_knowledge,
+         sm_general_knowledge, 
+         social_media,
+         sm_demonstration_change, 
+         sm_demonstration_democracy, 
+         demonstration_participation_online) %>% 
+                          add_column(ID = seq(1:1166)) 
+
+Data_Full <- Data_Full %>% 
+    mutate(Age2 = 2022 - age) %>%
+```
+
+
+```{r}
+filter(Age2 %in% (18:100)) 
+
+Data_Full <- Data_Full %>% 
+  rename(Treatmentgroup = sm_group_assignment,
+         Participation_Likelihood = sm_participation)
+
+Data_Full <- Data_Full %>% 
+  drop_na(Participation_Likelihood)
+
+
+table(Data_Full$sm_own_knowledge) 
+```
+
+- All respondents with no answer on likert scale are deleted
+
+```{r}
+Data_Full$Treatmentgroup <- as.factor(Data_Full$Treatmentgroup)
+Data_Full$Participation_Likelihood <- as.numeric(Data_Full$Participation_Likelihood)
+```
+
+
+```{r}
+Data_Full$Treatmentgroup <-  recode_factor(Data_Full$Treatmentgroup, "1" = "Low Likes", "2" = "Intermediate Likes", "3" = "High Likes") 
+
+Data_Full$Treatmentgroup <- relevel(Data_Full$Treatmentgroup, ref = "Low Likes")
+```
+
+
+```{r}
+amces <- cj(Data_Full, Participation_Likelihood ~  Treatmentgroup, id = ~ID)
+head(amces[c("feature", "level", "estimate", "std.error")], 20L)
+```
+## AMCE Calculation for main effects
+
+```{r}
+amcesplot <- plot(amces, size = 2)
+
+AMCE_Hauptanalyse <- amcesplot +
+  scale_colour_grey(end = 0) + 
+  theme_bw()+
+    labs(title = "Effects of different treatments on the likelihood for participation at a demonstration",
+         x = "Estimated AMCE",  
+         caption = "Sample size : 1053 respondents.") +
+          theme(text=element_text(size=11), legend.position = 'none') +
+                theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                  plot.title.position = "plot", 
+                  plot.caption.position =  "plot") 
+ 
+AMCE_Hauptanalyse
+
+ggsave("AMCE_Hauptanalyse.png", width = 19, height = 27, units = "cm")
+
+```
+
+
+## Marginal Means for the main effects
+
+```{r}
+MarginMeans <- cj(Data_Full,
+                  Participation_Likelihood ~  Treatmentgroup,
+                  id = ~ID,
+                  estimate = "mm")
+```
+
+
+```{r}
+Plot1_MainA <-plot(MarginMeans, size = 2) + 
+   theme(legend.position = "none") +
+              labs(title= "Marginal Means for the individual treatment effects", 
+                   caption = "Sample size = 1053.")+
+      scale_color_grey(end = 0) +
+                  theme_bw() +
+                      theme(text=element_text(size=11), legend.position = 'none') +
+                        theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                        plot.title.position = "plot", 
+                        plot.caption.position =  "plot") 
+
+
+Plot1_MainA
+
+ggsave("Plot1_MainA.png", width = 19, height = 27, units = "cm")
+```
+
+#Age Subgroup Analysis
+
+I. Data cleaning and subgroup management
+
+```{r}
+Data_Full <- Data_Full %>% 
+ mutate(Agegroup = case_when(Age2 >= 18  & Age2 <= 38 ~ "18-38",
+                             Age2 >= 39  & Age2 <= 59 ~ "39-59",
+                            Age2 >= 60  & Age2 <= 79 ~ "60-79")) 
+
+table(Data_Full$Agegroup)
+
+Data_Full$Agegroup <- as.factor(Data_Full$Agegroup)
+```
+
+
+```{r}
+mm_age <- cj(Data_Full, Participation_Likelihood ~  Treatmentgroup, id = ~ID, estimate = "mm", by = ~Agegroup)
+```
+
+Plot for the figure
+
+```{r}
+Plot_Marginal_Age <-plot(mm_age,
+                         group = "Agegroup", na.rm=TRUE, size = 2)+
+                            labs(title= "Subgroupanalysis for age groups", 
+                                 caption =  "Sample size 1053.\n 18-38 Years: 391 respondents.\n 39-59 Years: 370 respondents.\n 60-79 Jahre: 292 respondents ") +
+                      theme(legend.position = "right") +
+  theme_bw()+
+          theme(text=element_text(size=11)) +
+                theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                  plot.title.position = "plot", 
+                      plot.caption.position =  "plot") +
+                            scale_colour_brewer(palette="Set1") 
+
+
+Plot_Marginal_Age
+
+ggsave("Plot_Marginal_Age.png", width = 19, height = 27, units = "cm")
+
+
+```
+
+#### Subgroup party affiliation
+
+
+```{r}
+Data_Full <- Data_Full %>%
+        pivot_longer(names_to = "partei",
+                     values_to = "values",
+                            therm_spd:therm_linke) %>%
+                                          group_by(ID) 
+
+Data_Full$values <- as.numeric(Data_Full$values)
+
+
+
+Data_Full <- Data_Full %>%
+          filter(values == max(values)) %>%
+                      slice_sample(n = 1) %>%
+          mutate(partei = str_remove(partei, "therm_")) %>%
+          select(-values) %>%
+                  ungroup() 
+          mutate(across(contains("player.random"), factor))
+
+class(Data_Full$partei)
+
+table(Data_Full$partei)
+
+Data_Full$partei <- as.factor(Data_Full$partei)
+```
+
+
+## Calculation of Marginal Means
+
+```{r}
+mm_party <- cj(Data_Full, Participation_Likelihood ~  Treatmentgroup, id = ~ID, estimate = "mm", by = ~partei)
+```
+
+## Figure for party affiliation
+
+```{r}
+Plot_Marginal_Party <-plot(mm_party,
+                         group = "partei", na.rm=TRUE, size = 2)+
+                              labs(title= "Subgroupanalysis for political partys", 
+                                   caption = "Sample size 1020.\n afd: 146, cdu/csu: 225, fdp: 104, gruene: 213,  linke: 114, spd: 218") +
+  theme(legend.position = "right") +
+    theme_bw()+
+          theme(text=element_text(size=11)) +
+                theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                  plot.title.position = "plot", 
+                      plot.caption.position =  "plot") +
+                          scale_colour_brewer(palette="Set1") 
+
+
+Plot_Marginal_Party
+
+ggsave("Plot_Marginal_Party.png", width = 19, height = 27, units = "cm")
+
+
+```
+
+####
+Marginal Means: Subgroup: "Im Allgemeinen weiß ich wenig über Politik"
+######
+
+```{r}
+Data_Full$sm_own_knowledge <- as.factor(Data_Full$sm_own_knowledge)
+
+Data_Full <- Data_Full %>% 
+  rename(Political_Knowledge=sm_own_knowledge)
+       
+table(Data_Full$Political_Knowledge)    
+class(Data_Full$Political_Knowledge) 
+
+Data_Full$Political_Knowledge <-  recode_factor(Data_Full$Political_Knowledge,
+                                                "1" = "Disagree", 
+                                                "2" = "Partly-Disagree",
+                                                "3" = "Intermediate",
+                                                "4" = "Partly-Agree",
+                                                "5" = "Agree"
+                                                ) 
+
+Data_Full$Political_Knowledge <- factor(Data_Full$Political_Knowledge,
+                                        levels = c("Agree", 
+                                                   "Partly-Agree", 
+                                                   "Intermediate", 
+                                                   "Partly-Disagree", 
+                                                   "Disagree"))
+
+table(Data_Full$Political_Knowledge)
+
+```
+
+###  Marginal Means: Calculation political knowledge
+
+```{r}
+mm_polknow <- cj(Data_Full, 
+                 Participation_Likelihood ~ Treatmentgroup, 
+                 id = ~ID, 
+                 estimate = "mm", 
+                 by =~Political_Knowledge)
+```
+
+## Plot for the item about subjectiv political knowledge
+
+```{r}
+Plot_Marginal_Polk <-plot(mm_polknow,
+                            group = "Political_Knowledge", na.rm=TRUE, size = 2)+
+                                    labs(title= "Subgroupanalysis for Item",
+                                         subtitle= "Generally, I know little about politics...", 
+                                         caption = "Sample size 1053.\n Agree: 89 respondents \n Partly-Agree: 160 respondents\n Intermediate: 251 respondents\n Partly-Adisagree: 272 respondents\n Disagree: 235 respondents") +
+  theme(legend.position = "right") +
+      theme_bw()+
+          theme(text=element_text(size=11)) +
+                theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                  plot.title.position = "plot", 
+                  plot.caption.position =  "plot") +
+                    scale_colour_brewer(palette="Set1") 
+
+
+Plot_Marginal_Polk
+
+ggsave("Plot_Marginal_Polk.png", width = 19, height = 27, units = "cm")
+
+
+```
+
+
+
+####
+Marginal Means: Subgroup: "Durch Demonstrationen koennen
+keine politischen Veraenderungen bewirkt werden."
+######
+
+
+```{r}
+Data_Full$sm_demonstration_change <- as.factor(Data_Full$sm_demonstration_change)
+
+Data_Full <- Data_Full %>% 
+  rename(Demonstration_Change=sm_demonstration_change)
+       
+table(Data_Full$Demonstration_Change)    
+class(Data_Full$DDemonstration_Change) 
+
+Data_Full$Demonstration_Change <-  recode_factor(Data_Full$Demonstration_Change,
+                                                "1" = "Disagree", 
+                                                "2" = "Partly-Disagree",
+                                                "3" = "Intermediate",
+                                                "4" = "Partly-Agree",
+                                                "5" = "Agree"
+                                                ) 
+
+Data_Full$Demonstration_Change <- factor(Data_Full$Demonstration_Change,
+                                        levels = c("Agree", 
+                                                   "Partly-Agree", 
+                                                   "Intermediate", 
+                                                   "Partly-Disagree", 
+                                                   "Disagree"))
+
+table(Data_Full$Demonstration_Change)
+
+```
+
+
+```{r}
+mm_demo <- cj(Data_Full, 
+                 Participation_Likelihood ~ Treatmentgroup, 
+                 id = ~ID, 
+                 estimate = "mm", 
+                 by =~Demonstration_Change)
+```
+
+### Plot for the item about demonstraion change
+
+```{r}
+Plot_Marginal_change <-plot(mm_polknow,
+                         group = "Demonstration_Change", na.rm=TRUE, size = 2)+
+                                  labs(title= "Subgroupanalysis for Item",
+                                       subtitle= "Demonstrations cannot bring any political change...", 
+                                       caption = "Sample size 1053.\n Agree: 140 respondents \n Partly-Agree: 182 respondents\n Intermediate: 259 respondents\n Partly-Adisagree: 220 respondents\n Disagree: 224 respondents") +
+  theme(legend.position = "right") +
+  theme_bw()+
+          theme(text=element_text(size=11)) +
+                theme(plot.caption = element_text(hjust = 0, face= "italic"), 
+                    plot.title.position = "plot", 
+                      plot.caption.position =  "plot") +
+                          scale_colour_brewer(palette="Set1") 
+
+
+Plot_Marginal_change
+
+ggsave("Plot_Marginal_change.png", width = 19, height = 27, units = "cm")
+
+
+```
+## Plotting frequency of the treatment group
+
+
+
+```{r}
+MarginMeans <- Participation_Likelihood ~  Treatmentgroup
+
+MarginMeans <- as.data.frame(MarginMeans)
+                  
+PlotFreq <- plot(cj_freqs(Data_Full, MarginMeans, id = ~ID))
+
+
+ggsave("PlotFreq.png")
+```
+
+
+##Barplot about Online participation and agegroup
+
+```{r}
+
+PartA <- Data_Full %>% 
+  select(Agegroup, demonstration_participation_online) %>% 
+  drop_na(demonstration_participation_online) 
+
+DataPart <- table(PartA$demonstration_participation_online, PartA$Agegroup)
+
+DataPart <- as.data.frame(DataPart)
+
+DataPart <- DataPart %>% 
+  filter(Var1 != -999) %>% 
+  rename(Participation_Demo_Online=  Var1,
+         Agegroup = Var2)
+
+DataPart$Participation_Demo_Online <-  recode_factor(DataPart$Participation_Demo_Online,
+                                                "1" = "Yes", 
+                                                "2" = "No") 
+
+
+ggplot(DataPart, aes(x = factor(Agegroup), y = Freq  , fill = Participation_Demo_Online, colour = Participation_Demo_Online)) + 
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
