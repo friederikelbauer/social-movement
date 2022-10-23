@@ -58,7 +58,7 @@ v3 <- ggplot(df, aes(y = treatment_exposure)) +
         axis.ticks.x=element_blank()) 
 v3
 
-# exclude all obs with respondents taking more than 5
+# exclude all obs with respondents taking more than 5min/300s
 df1 <- df %>% filter(treatment_exposure <=300)
 df2 <- df %>% filter(!is.na(sm_participation))
 df3 <- df %>% filter(treatment_exposure >10)
